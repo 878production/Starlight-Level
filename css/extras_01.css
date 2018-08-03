@@ -1,0 +1,156 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/notosansjp.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body{
+font-family: "Noto Sans KR", "Noto Sans JP", "Nanum Gothic", "Malgun Gothic", sans-serif;
+font-size: 0.9em;
+line-height: 173%;
+background-color: #FAFAFA;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-family: "Noto Sans KR", "Noto Sans JP", "Nanum Gothic", "Malgun Gothic", sans-serif;
+line-height: 173%;
+}
+
+#imas_voices_page,#imas_lovelive_anniversaries_page,#imas_areas_page{background-color: rgb(255,255,255) !important;}
+
+a:link{
+color: #BB0011;
+text-decoration: none;
+}
+a:active{
+color: #CCCCCC;
+text-decoration: none;
+}
+a:visited{
+color: #777777;
+text-decoration: none;
+}
+a:hover{
+color: #AAAAAA;
+text-decoration: none;
+}
+
+blockquote{
+font-family: "Courier New"
+}
+
+abbr{cursor: help;}
+
+table,tr,td{
+line-height: 173%;
+height: 3.25em;
+border: 1px solid #000000;
+border-collapse: collapse;
+}
+
+.tablehead,.ldates{text-align: center;}
+
+.nonanniversaries{background-color: #AFAFAF;}
+
+#headtext{
+text-align: center;
+background-color: #AF8F5F;
+padding-top: 1em;
+padding-bottom: 1em;
+border-radius: 1em;
+}
+
+label{font-size: 80%;}
+
+#author_info,#recent_edit{
+text-align: right;
+padding-left: 0.5em;
+padding-right: 0.5em;
+font-size: 80%;
+}
+
+.list_voices,#list_anniversaries,#a_cinderella_girls,#a_million_stars,#a_315pro{
+width: 100%;
+padding: 1.5em;
+overflow: auto;
+}
+
+.table_anniversaries{margin: auto;}
+
+.idol_category{
+text-align: center;
+font-weight: bold;
+}
+
+.idol_list table,tr,td{
+text-align: center;
+height: 2.25em !important;
+}
+
+.cg_cute{color: #FF00FF;}
+.cg_cool{color: #0000FF;}
+.cg_passion{color: #FFC000;}
+
+
+#list_anniversaries ul{
+list-style-type: none;
+margin: 0;
+padding: 0.25em 0 0.25em 0;
+overflow: hidden;
+}
+
+
+input,select{font-family: "Nanum Gothic";}
+
+#SL_levelCalcForm01 ul{
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: inherit;
+border: 1px solid #000000;
+}
+
+#SL_levelCalcForm01 li{
+display: block;
+text-align: center;
+padding: 0.5em 1em;
+text-decoration: none;
+border-bottom: 1px solid #000000;
+}
+
+#SL_levelCalcForm02 ul{
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: inherit;
+border: 1px solid #000000;
+}
+
+#SL_levelCalcForm02 li{
+display: block;
+text-align: center;
+padding: 0.5em 1em;
+text-decoration: none;
+border-bottom: 1px solid #000000;
+}
+
+select{
+height: 1.5em;
+padding-left: 0.25em;
+padding-right: 0.25em;
+width: 10em;
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+background: url('/res/dropdown.jpg') no-repeat 95% 50%;
+}
+
+select::-ms-expand{display: none;}
+
+#SL_levelCalcForm01 li:last-child{border-bottom: none;}
+#SL_levelCalcForm02 li:last-child{border-bottom: none;}
+
+#SL_levelCalcForm01 select,input{font-size: 1.25em;}
+#SL_levelCalcForm01 input[type="number"]{width: 4em;}
+#SL_levelCalcForm02 select,input{font-size: 1.25em;}
+#SL_levelCalcForm02 input[type="number"]{width: 4em;}

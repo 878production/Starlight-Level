@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>스타라이트 스테이지(데레스테) 레벨업 계산기</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<link rel="stylesheet" type="text/css" href="/css/extras_01.css" />
+<script type="text/javascript" src="starlight_level.js"></script>
+<script type="text/javascript" src="common.js"></script>
+</head>
+<body onload="initCalc();">
+<div class="w3-top">
+ <div class="w3-sidebar w3-bar-block w3-white w3-mobile w3-animate-left" style="display: none;" id="sidebar">
+ <button onclick="closeSidebar();" class="w3-bar-item w3-large">닫기 &times;</button>
+ <a href="/" class="w3-bar-item w3-button">메인 페이지로</a>
+ <a href="imas_lovelive_anniversaries.htm" class="w3-bar-item w3-button">아이마스&amp;러브라이브 관련 생일/기념일 일람</a>
+ <a href="imas_voices.htm" class="w3-bar-item w3-button">아이마스 시리즈 캐릭터 캐스팅 일람</a>
+ <a href="imas_areas.htm" class="w3-bar-item w3-button">아이마스 시리즈 출신지별 캐릭터 일람</a>
+ <a href="starlight_level.htm" class="w3-bar-item w3-button"><b>스타라이트 스테이지(데레스테) 레벨업 계산기</b></a>
+ </div>
+ <div class="w3-blue"><button onclick="openSidebar();" class="w3-button w3-bar-item w3-large">&#9776;</button> 878(하나야) 프로덕션 작업물 저장소</div>
+</div>
+
+<div class="w3-content" style="margin-top: 3em;">
+ <header class="w3-center w3-padding-large">
+  <h1 class="w3-xxlarge">스타라이트 스테이지(데레스테) 레벨업 계산기</h1>
+  <h5>IM@S Starlight Stage Level Calculator</h5>
+ </header>
+</div>
+
+<h2 class="w3-center w3-large"><b>특정 레벨 구간의 경험치 계산</b></h2>
+
+<div class="w3-row">
+ <form id="SL_levelCalcForm01" method="GET" action="javascript:dummyaction();" onreset="calcExp();">
+
+  <ul>
+   <li>현재 레벨 : <input type="number" id="now_prodlevel" min="1" max="300" onchange="calcExp();" value="1" /> (<span id="exp_levelup_from"></span>)</li>
+   <li>목표 레벨 : <input type="number" id="dest_prodlevel" min="1" max="300" onchange="calcExp();" value="1" /> (<span id="exp_levelup_to"></span>)</li>
+   <li>통상 라이브 : 
+   <select name="livepoint" id="unit_livepoint" onchange="calcExp();">
+    <optgroup label="데뷔 (DEBUT)">
+     <option value="35">10 (&#9734;5~7)</option>
+     <option value="42">11 (&#9734;8~9)</option>
+    </optgroup>
+    <optgroup label="레귤러 (REGULAR)">
+     <option value="46">12 (&#9734;10~11)</option>
+     <option value="46">13 (&#9734;12~13)</option>
+     <option value="49">14 (&#9734;14)</option>
+    </optgroup>
+    <optgroup label="프로 (PRO)">
+     <option value="49">15 (&#9734;15~16)</option>
+     <option value="53">16 (&#9734;17~18)</option>
+     <option value="56">17 (&#9734;19)</option>
+    </optgroup>
+    <optgroup label="마스터 (MASTER)">
+     <option value="56">18 (&#9734;20~24)</option>
+     <option value="63">19 (&#9734;25~28)</option>
+    </optgroup>
+   </select> 스태미나 x <span id="livepoint_lives">0</span>회 (총 소모 스태미나 : <span id="total_livepoint">0</span>) / 또는 마스터+ 라이브 x <span id="masterplus_lives">0</span>회</li>
+   <li>예상 소요시간 합계</abbr> : <span id="elapsed_livepoint"></span> (통상 라이브) / <span id="elapsed_masterplus"></span> (마스터+ 라이브)</li>
+   <li>레벨업 회복 스태미나 합계 : <span id="livepoint_recovery_up"></span></li>
+   <li><input type="reset" value="재입력" onclick="calcExp();" /></li>
+  </ul>
+ </form>
+</div>
+
+<h2 class="w3-center w3-large"><b>라이브 및 영업 횟수에 따른 레벨업 계산</b></h2>
+
+<div class="w3-row">
+ <form id="SL_levelCalcForm02" method="GET" action="javascript:dummyaction();" onreset="calcExp();">
+
+  <ul>
+   <li>현재 레벨 : <input type="number" id="now_prodlevel_todo" min="1" max="300" value="1" onchange="calcLevelup();" />
+   <li>현재 경험치 : <input type="number" id="prodlevel_expnow" value="0" min="0" max="20000" onchange="calcLevelup();" /> / <span id="prodlevel_maxexp"></span>
+  </ul>
+  <ul>
+   <li>라이브 횟수 : 통상 라이브 
+   <select name="livepoint" id="unit_livepoint_todo" onchange="calcLevelup();">
+    <optgroup label="데뷔 (DEBUT)">
+     <option value="35">10 (&#9734;5~7)</option>
+     <option value="42">11 (&#9734;8~9)</option>
+    </optgroup>
+    <optgroup label="레귤러 (REGULAR)">
+     <option value="46">12 (&#9734;10~11)</option>
+     <option value="46">13 (&#9734;12~13)</option>
+     <option value="49">14 (&#9734;14)</option>
+    </optgroup>
+    <optgroup label="프로 (PRO)">
+     <option value="49">15 (&#9734;15~16)</option>
+     <option value="53">16 (&#9734;17~18)</option>
+     <option value="56">17 (&#9734;19)</option>
+    </optgroup>
+    <optgroup label="마스터 (MASTER)">
+     <option value="56">18 (&#9734;20~24)</option>
+     <option value="63">19 (&#9734;25~28)</option>
+    </optgroup>
+   </select> 스태미나 x <input type="number" id="livepoint_lives_todo" value="0" onchange="calcLevelup();" />회 &amp; 마스터+ 라이브 x <input type="number" id="masterplus_lives_todo" value="0" onchange="calcLevelup();" />회</li>
+  </ul>
+   <ul>
+    <li>통상 영업 : 
+     <select name="business" id="unit_business_normal" onchange="calcLevelup();">
+      <option value="3600,6">1시간</option>
+      <option value="14400,22">4시간</option>
+      <option value="21600,33">6시간</option>
+     </select>
+     <input type="number" id="business_normal_todo" value="0" onchange="calcLevelup();" />회
+    </li>
+    <li>특별 영업 : 
+     <select name="business" id="unit_business_special" onchange="specialBusinessCount();">
+      <option value="21600,33,2">6시간 (일 2회)</option>
+      <option value="21600,52,10">6시간 (일 10회)</option>
+      <option value="36000,69,2">10시간 (일 2회)</option>
+     </select>
+     &nbsp;
+     <select name="business" id="business_special_count" onchange="calcLevelup();">
+     </select>회
+    </li>
+   </ul>
+
+  <ul>
+   <li>예상 라이브 소요시간 합계 : <span id="elapsed_lives_todo"></span></li>
+   <li>예상 영업 최대 소요시간 합계 : <span id="elapsed_business_todo"></span></li>
+   <li>단축에 소모되는 최대 스태미나 합계 : <span id="totallivepoint_business"></span></li>
+   <li>획득 경험치 : <span id="totalexp_accmulated"></span></li>
+   <li>최종 레벨 : <span id="dest_prodlevel_todo"></span> <div class="w3-grey w3-text-white" style="margin: auto; height: 22px; width: 300px; position: relative;"><span id="exp_prodlevel_todo" style="right: 5%; position: absolute;"></span><div id="exp_progress" class="w3-pink" style="height: 100%;"></div></div></li>
+   <li><input type="reset" value="재입력" onclick="calcExp();" /></li>
+  </ul>
+
+  </form>
+</div>
+
+<div class="w3-row">
+
+<h2 class="w3-center w3-large"><b>본 계산기의 한계</b></h2>
+<ul>
+ <li>본 계산은 어디까지나 일반적인 상황에 국한된 것으로, 이벤트(재화 및 그루브, 퍼레이드 등)나 라이브 파티 등의 특수 조건은 고려하지 않았습니다. 추후 이 부분에 대한 계산을 추가할 예정입니다.</li>
+ <li>한 곡을 치는 시간은 3분으로, 연속적으로 친다고 가정합니다. 걸리는 시간은 기기 환경, 여러분의 체력이나 여력/의지 등 다양한 조건에 따라 길어지거나 짧아질 수 있습니다.</li>
+</ul>
+</div>
+
+
+</body>
+</html>
